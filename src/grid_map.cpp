@@ -14,10 +14,20 @@ GridMap::GridMap(int ny, int nx, const Eigen::Vector2d& min_pt, double resolutio
             Cell& c = (*this)(x, y);
             c.idx = y * nx + x;
             c.center.x() = min_pt.x() + (x + 0.5) * resolution;
+            //c.center.x() = min_pt.x() + ((nx - 1 - x) + 0.5) * resolution;
             c.center.y() = min_pt.y() + (y + 0.5) * resolution;
         }
     }
 }
+
+/*Eigen::Vector2d GridMap::to_grid_frame(const Eigen::Vector2d& sub) const {
+    Eigen::Vector2d rel = {sub.y(), sub.x()};
+    double cos_yaw = std::cos(fiducial_yaw), sin_yaw = std::sin(fiducial_yaw);
+    Eigen::Vector2d grid_pt;
+    grid_pt.x() =  cos_yaw * rel.x() + sin_yaw * rel.y();
+    grid_pt.y() = -sin_yaw * rel.x() + cos_yaw * rel.y();
+    return grid_pt;
+}*/
 
 Eigen::Vector2i GridMap::lin2grid(int lin_idx) const {
     //return {lin_idx % nx, static_cast<int>(lin_idx / nx)};

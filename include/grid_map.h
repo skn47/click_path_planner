@@ -6,6 +6,7 @@
 #include <queue>
 #include <vector>
 #include <array>
+#include <cmath>
 
 enum CellState : unsigned char {
     FREE = 0,
@@ -28,6 +29,10 @@ public:
 class GridMap {
 public:
     GridMap(int ny, int nx, const Eigen::Vector2d& min_pt, double resolution);
+
+    //Eigen::Vector2d to_grid_frame(const Eigen::Vector2d& sub) const;
+    //Eigen::Vector3d GridMap::to_grid_frame(const Eigen::Vector3d& sub) const;
+    
 
     Eigen::Vector2i lin2grid(int lin_idx) const;
     size_t grid2lin(const Eigen::Vector2i& grid_idx) const;
